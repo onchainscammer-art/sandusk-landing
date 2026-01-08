@@ -180,27 +180,16 @@ const Hero = ({ onBuyClick }) => (
       transition={{ duration: 0.8 }}
       className="text-center relative z-20"
     >
-      {/* Mobile Images - Above Logo */}
-      <div className="md:hidden flex items-center justify-center gap-4 mb-6">
-        <motion.img
-          src="/IMG_4169.jpeg"
-          alt=""
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6 }}
-          className="w-28 rotate-6"
-          style={{ filter: 'drop-shadow(2px 2px 4px rgba(0,0,0,0.1))' }}
-        />
-        <motion.img
-          src="/founder.png"
-          alt=""
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="w-28 -rotate-3"
-          style={{ filter: 'drop-shadow(2px 2px 4px rgba(0,0,0,0.1))' }}
-        />
-      </div>
+      {/* Mobile Image - Above Logo */}
+      <motion.img
+        src="/founder.png"
+        alt=""
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.6 }}
+        className="md:hidden mx-auto mb-6 w-32 -rotate-3"
+        style={{ filter: 'drop-shadow(2px 2px 4px rgba(0,0,0,0.1))' }}
+      />
 
       {/* Multi-colored SanDusk Logo */}
       <h1 className="font-marker mb-6" style={{ fontSize: 'clamp(3rem, 15vw, 8rem)', lineHeight: '1.2' }}>
@@ -526,8 +515,9 @@ const BackgroundStickers = () => {
 
 const MobileImageGallery = () => {
   const mobileImages = [
+    { src: '/IMG_4169.jpeg', rotation: '8deg' },
     { src: '/IMG_4171.png', rotation: '-6deg' },
-    { src: '/IMG_0434.png', rotation: '8deg' },
+    { src: '/IMG_0434.png', rotation: '5deg' },
     { src: '/IMG_4170.jpeg', rotation: '-4deg' },
     { src: '/IMG_4162.jpeg', rotation: '6deg' },
   ]
@@ -545,7 +535,7 @@ const MobileImageGallery = () => {
         </h2>
 
         <div className="grid grid-cols-2 gap-6">
-          {mobileImages.map((image, index) => (
+          {mobileImages.slice(0, 4).map((image, index) => (
             <motion.img
               key={index}
               src={image.src}
@@ -561,6 +551,23 @@ const MobileImageGallery = () => {
               }}
             />
           ))}
+        </div>
+
+        {/* Fifth image centered below */}
+        <div className="mt-6 flex justify-center">
+          <motion.img
+            src={mobileImages[4].src}
+            alt=""
+            initial={{ opacity: 0, scale: 0.5 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="w-1/2"
+            style={{
+              transform: `rotate(${mobileImages[4].rotation})`,
+              filter: 'drop-shadow(2px 2px 4px rgba(0,0,0,0.1))',
+            }}
+          />
         </div>
       </motion.div>
     </section>
