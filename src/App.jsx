@@ -163,14 +163,14 @@ const SDCardComponent = ({ contractAddress, onCopy }) => {
 
 const Hero = ({ onBuyClick }) => (
   <section className="min-h-screen flex flex-col items-center justify-center px-4 py-20 relative">
-    {/* Founder Image - Floating on the side */}
+    {/* Founder Image - Floating on the side (Desktop only) */}
     <motion.img
       src="/founder.png"
       alt="Founder"
       initial={{ opacity: 0, x: 50 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 1, delay: 0.5 }}
-      className="absolute top-20 right-4 md:right-12 lg:right-24 w-32 md:w-48 lg:w-64 pointer-events-none z-10"
+      className="hidden md:block absolute top-20 right-4 md:right-16 lg:right-32 xl:right-40 w-32 md:w-48 lg:w-64 pointer-events-none z-10"
       style={{ filter: 'drop-shadow(4px 4px 8px rgba(0,0,0,0.1))' }}
     />
 
@@ -180,6 +180,28 @@ const Hero = ({ onBuyClick }) => (
       transition={{ duration: 0.8 }}
       className="text-center relative z-20"
     >
+      {/* Mobile Images - Above Logo */}
+      <div className="md:hidden flex items-center justify-center gap-4 mb-6">
+        <motion.img
+          src="/IMG_4169.jpeg"
+          alt=""
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6 }}
+          className="w-28 rotate-6"
+          style={{ filter: 'drop-shadow(2px 2px 4px rgba(0,0,0,0.1))' }}
+        />
+        <motion.img
+          src="/founder.png"
+          alt=""
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="w-28 -rotate-3"
+          style={{ filter: 'drop-shadow(2px 2px 4px rgba(0,0,0,0.1))' }}
+        />
+      </div>
+
       {/* Multi-colored SanDusk Logo */}
       <h1 className="font-marker mb-6" style={{ fontSize: 'clamp(3rem, 15vw, 8rem)', lineHeight: '1.2' }}>
         <span className="text-crayon-red">S</span>
@@ -446,6 +468,106 @@ const GlitchOverlay = ({ show }) => (
 )
 
 // ============================================
+// BACKGROUND STICKERS (GUTTER SYSTEM)
+// ============================================
+
+const BackgroundStickers = () => {
+  const stickers = [
+    // Top Left Gutter
+    {
+      src: '/IMG_4171.png',
+      className: 'hidden md:block absolute top-10 left-10 w-32 -rotate-6',
+    },
+    // Top Right Gutter
+    {
+      src: '/IMG_4169.jpeg',
+      className: 'hidden md:block absolute top-20 right-10 w-40 rotate-12',
+    },
+    // Middle Left Gutter (moved up to avoid red divider)
+    {
+      src: '/IMG_0434.png',
+      className: 'hidden md:block absolute top-[28%] left-8 w-36 rotate-6',
+    },
+    // Right side - Above Tech Specs
+    {
+      src: '/IMG_4170.jpeg',
+      className: 'hidden md:block absolute top-[38%] right-12 w-44 -rotate-3',
+    },
+    // Bottom Left Gutter
+    {
+      src: '/IMG_4162.jpeg',
+      className: 'hidden md:block absolute bottom-20 left-12 w-32 rotate-12',
+    },
+  ]
+
+  return (
+    <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+      {stickers.map((sticker, index) => (
+        <motion.img
+          key={index}
+          src={sticker.src}
+          alt=""
+          initial={{ opacity: 0, scale: 0.5 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, delay: index * 0.1 }}
+          className={sticker.className}
+          style={{
+            filter: 'drop-shadow(2px 2px 4px rgba(0,0,0,0.1))',
+          }}
+        />
+      ))}
+    </div>
+  )
+}
+
+// ============================================
+// MOBILE IMAGE GALLERY (Mobile Only)
+// ============================================
+
+const MobileImageGallery = () => {
+  const mobileImages = [
+    { src: '/IMG_4171.png', rotation: '-6deg' },
+    { src: '/IMG_0434.png', rotation: '8deg' },
+    { src: '/IMG_4170.jpeg', rotation: '-4deg' },
+    { src: '/IMG_4162.jpeg', rotation: '6deg' },
+  ]
+
+  return (
+    <section className="md:hidden py-12 px-4">
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        className="max-w-lg mx-auto"
+      >
+        <h2 className="font-marker text-4xl text-center mb-8 text-crayon-red">
+          The Evidence
+        </h2>
+
+        <div className="grid grid-cols-2 gap-6">
+          {mobileImages.map((image, index) => (
+            <motion.img
+              key={index}
+              src={image.src}
+              alt=""
+              initial={{ opacity: 0, scale: 0.5 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="w-full"
+              style={{
+                transform: `rotate(${image.rotation})`,
+                filter: 'drop-shadow(2px 2px 4px rgba(0,0,0,0.1))',
+              }}
+            />
+          ))}
+        </div>
+      </motion.div>
+    </section>
+  )
+}
+
+// ============================================
 // FOOTER
 // ============================================
 
@@ -572,53 +694,65 @@ function App() {
 
   return (
     <div className="relative min-h-screen bg-paper">
-      {/* Hero Section */}
-      <Hero onBuyClick={handleBuyClick} />
+      {/* Background Stickers Layer */}
+      <BackgroundStickers />
 
-      {/* SD Card Section */}
-      <section className="py-20 px-4">
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="max-w-3xl mx-auto"
-        >
-          <h2 className="font-marker text-5xl md:text-7xl text-center mb-12 text-crayon-blue">
-            Your Storage Solution
-          </h2>
-          <SDCardComponent contractAddress={CA} onCopy={copyToClipboard} />
-          <p className="text-center font-hand text-xl mt-8 text-gray-600">
-            Click the card to copy • Press 'C' on keyboard
-          </p>
-        </motion.div>
-      </section>
+      {/* Main Content Layer */}
+      <div className="relative z-10">
+        {/* Hero Section */}
+        <Hero onBuyClick={handleBuyClick} />
 
-      <CrayonDivider color="#ED1C24" />
+        {/* SD Card Section */}
+        <section className="py-20 px-4">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="max-w-3xl mx-auto"
+          >
+            <h2 className="font-marker text-5xl md:text-7xl text-center mb-12 text-crayon-blue">
+              Your Storage Solution
+            </h2>
+            <SDCardComponent contractAddress={CA} onCopy={copyToClipboard} />
+            <p className="text-center font-hand text-xl mt-8 text-gray-600">
+              Click the card to copy • Press 'C' on keyboard
+            </p>
+          </motion.div>
+        </section>
 
-      {/* Tech Specs */}
-      <TechSpecs />
+        <CrayonDivider color="#ED1C24" />
 
-      <CrayonDivider color="#FFF200" />
+        {/* Tech Specs */}
+        <TechSpecs />
 
-      {/* How to Buy */}
-      <HowToBuy />
+        <CrayonDivider color="#FFF200" />
 
-      <CrayonDivider color="#0066CC" />
+        {/* How to Buy */}
+        <HowToBuy />
 
-      {/* Tokenomics */}
-      <Tokenomics />
+        <CrayonDivider color="#0066CC" />
 
-      {/* Footer */}
-      <Footer />
+        {/* Tokenomics */}
+        <Tokenomics />
 
-      {/* Easter Egg Trigger */}
-      <CorruptedFileEasterEgg onTrigger={triggerGlitch} />
+        {/* Mobile Image Gallery */}
+        <MobileImageGallery />
 
-      {/* Glitch Overlay */}
-      <GlitchOverlay show={showGlitch} />
+        {/* Footer */}
+        <Footer />
+      </div>
 
-      {/* Toast Notification */}
-      <Toast message={toastMessage} show={showToast} onClose={() => setShowToast(false)} />
+      {/* Overlays and UI Elements (above everything) */}
+      <div className="relative z-50">
+        {/* Easter Egg Trigger */}
+        <CorruptedFileEasterEgg onTrigger={triggerGlitch} />
+
+        {/* Glitch Overlay */}
+        <GlitchOverlay show={showGlitch} />
+
+        {/* Toast Notification */}
+        <Toast message={toastMessage} show={showToast} onClose={() => setShowToast(false)} />
+      </div>
     </div>
   )
 }
