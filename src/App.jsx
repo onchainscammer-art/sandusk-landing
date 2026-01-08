@@ -162,12 +162,23 @@ const SDCardComponent = ({ contractAddress, onCopy }) => {
 // ============================================
 
 const Hero = ({ onBuyClick }) => (
-  <section className="min-h-screen flex flex-col items-center justify-center px-4 py-20">
+  <section className="min-h-screen flex flex-col items-center justify-center px-4 py-20 relative">
+    {/* Founder Image - Floating on the side */}
+    <motion.img
+      src="/founder.png"
+      alt="Founder"
+      initial={{ opacity: 0, x: 50 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 1, delay: 0.5 }}
+      className="absolute top-20 right-4 md:right-12 lg:right-24 w-32 md:w-48 lg:w-64 pointer-events-none z-10"
+      style={{ filter: 'drop-shadow(4px 4px 8px rgba(0,0,0,0.1))' }}
+    />
+
     <motion.div
       initial={{ opacity: 0, y: -50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
-      className="text-center"
+      className="text-center relative z-20"
     >
       {/* Multi-colored SanDusk Logo */}
       <h1 className="font-marker mb-6" style={{ fontSize: 'clamp(3rem, 15vw, 8rem)', lineHeight: '1.2' }}>
@@ -201,16 +212,13 @@ const Hero = ({ onBuyClick }) => (
           transform: 'rotate(-1deg)',
         }}
       >
-        <span className="relative z-10">BUY STORAGE (TOKEN)</span>
         <motion.div
           className="absolute inset-0 bg-crayon-orange"
           initial={{ x: '-100%' }}
           whileHover={{ x: 0 }}
           transition={{ duration: 0.3 }}
         />
-        <span className="absolute inset-0 flex items-center justify-center z-20 opacity-0 hover:opacity-100 transition-opacity">
-          BUY STORAGE (TOKEN)
-        </span>
+        <span className="relative z-10">BUY STORAGE (TOKEN)</span>
       </motion.button>
 
       {/* Scroll indicator */}
@@ -450,7 +458,7 @@ const Footer = () => (
         {/* Social Links */}
         <div className="flex gap-6">
           <motion.a
-            href="https://twitter.com/sandusk"
+            href="https://x.com"
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ scale: 1.2, rotate: 5 }}
