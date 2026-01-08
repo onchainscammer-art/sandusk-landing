@@ -480,7 +480,7 @@ const BackgroundStickers = () => {
     // Right side - Above Tech Specs
     {
       src: '/IMG_4170.jpeg',
-      className: 'hidden md:block absolute top-[38%] right-12 w-44 -rotate-3',
+      className: 'hidden md:block absolute top-[32%] right-12 w-44 -rotate-3',
     },
     // Bottom Left Gutter
     {
@@ -508,6 +508,33 @@ const BackgroundStickers = () => {
     </div>
   )
 }
+
+// ============================================
+// GOOGLE MEME SECTION (Between Tech Specs and How to Buy)
+// ============================================
+
+const GoogleMemeSection = () => (
+  <section className="py-16 px-4">
+    <motion.div
+      initial={{ opacity: 0, scale: 0.8 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+      className="max-w-2xl mx-auto flex justify-center"
+    >
+      <motion.img
+        src="/IMG_0448.png"
+        alt=""
+        whileHover={{ scale: 1.05, rotate: 2 }}
+        className="w-full max-w-md md:max-w-lg"
+        style={{
+          transform: 'rotate(-2deg)',
+          filter: 'drop-shadow(4px 4px 8px rgba(0,0,0,0.15))',
+        }}
+      />
+    </motion.div>
+  </section>
+)
 
 // ============================================
 // MOBILE IMAGE GALLERY (Mobile Only)
@@ -727,12 +754,13 @@ function App() {
           </motion.div>
         </section>
 
-        <CrayonDivider color="#ED1C24" />
-
         {/* Tech Specs */}
         <TechSpecs />
 
         <CrayonDivider color="#FFF200" />
+
+        {/* Google Meme Section */}
+        <GoogleMemeSection />
 
         {/* How to Buy */}
         <HowToBuy />
