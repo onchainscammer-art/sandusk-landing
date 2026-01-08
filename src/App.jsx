@@ -207,9 +207,10 @@ const Hero = ({ onBuyClick }) => (
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.3 }}
-        className="font-hand text-2xl md:text-4xl mb-12 text-gray-700"
+        className="font-hand text-xl md:text-3xl mb-16 text-gray-700 max-w-4xl mx-auto leading-relaxed"
       >
-        The Degenerate Retards Stock of Choice
+        The Degenerate Retards Stock of Choice<br />
+        and Preferred Storage for the Epstein Files
       </motion.p>
 
       {/* CTA Button */}
