@@ -488,6 +488,11 @@ const BackgroundStickers = () => {
       src: '/IMG_4162.jpeg',
       className: 'hidden md:block absolute bottom-20 left-12 w-32 rotate-12',
     },
+    // Below Tech Specs - Right Margin
+    {
+      src: '/IMG_101.jpeg',
+      className: 'hidden md:block absolute top-[58%] right-10 w-36 rotate-8',
+    },
   ]
 
   return (
@@ -548,6 +553,7 @@ const MobileImageGallery = () => {
     { src: '/IMG_0434.png', rotation: '5deg' },
     { src: '/IMG_4170.jpeg', rotation: '-4deg' },
     { src: '/IMG_4162.jpeg', rotation: '6deg' },
+    { src: '/IMG_101.jpeg', rotation: '-7deg' },
   ]
 
   return (
@@ -563,7 +569,7 @@ const MobileImageGallery = () => {
         </h2>
 
         <div className="grid grid-cols-2 gap-6">
-          {mobileImages.slice(0, 4).map((image, index) => (
+          {mobileImages.map((image, index) => (
             <motion.img
               key={index}
               src={image.src}
@@ -579,23 +585,6 @@ const MobileImageGallery = () => {
               }}
             />
           ))}
-        </div>
-
-        {/* Fifth image centered below */}
-        <div className="mt-6 flex justify-center">
-          <motion.img
-            src={mobileImages[4].src}
-            alt=""
-            initial={{ opacity: 0, scale: 0.5 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="w-1/2"
-            style={{
-              transform: `rotate(${mobileImages[4].rotation})`,
-              filter: 'drop-shadow(2px 2px 4px rgba(0,0,0,0.1))',
-            }}
-          />
         </div>
       </motion.div>
     </section>
