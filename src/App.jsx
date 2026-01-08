@@ -614,7 +614,7 @@ const Footer = () => (
         {/* Social Links */}
         <div className="flex gap-6">
           <motion.a
-            href="https://x.com"
+            href="https://x.com/sandusk67"
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ scale: 1.2, rotate: 5 }}
