@@ -5,7 +5,7 @@ import { Copy, AlertTriangle, Twitter } from 'lucide-react'
 // ============================================
 // CONTRACT ADDRESS - UPDATE THIS AFTER LAUNCH
 // ============================================
-const CA = "INSERT_CA_HERE";
+const CA = "F7grH2Bazbr5HjGBLDT1VfyQNVVmopYgcw8pvbCEpump";
 
 // ============================================
 // HAND-DRAWN SVG COMPONENTS
